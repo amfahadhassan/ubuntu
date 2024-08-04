@@ -15,6 +15,7 @@ nb-flip-card {
 nb-card {
   width: 100%;
   height: 100%;
+  margin-bottom: 0;
 }
 
 nb-card-body {
@@ -28,7 +29,7 @@ nb-card-body {
 .chart, .table {
   width: 100%;
   height: 100%;
-  padding: 25px;
+  padding: 5px;
   box-sizing: border-box;
 }
 
@@ -36,4 +37,14 @@ nb-card-body {
   padding-top: 10px ;
   display: flex;
   flex-direction: row;
+}
+
+.exportbtn {
+  display: flex;
+  justify-content: space-around;
+  padding: 0;
+}
+
+.exportbtn button[nbButton] {
+  border-radius: unset !important;
 }

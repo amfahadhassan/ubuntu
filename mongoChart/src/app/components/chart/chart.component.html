@@ -1,25 +1,28 @@
-<app-filter 
-    [filterOptions]="config.filterOptions" 
-    (filterChange)="onFilterChange($event)" 
-    [spanText]="config.filterLabel"
-    (filterChange)="onFilterChange($event)">
+<app-filter [filterOptions]="config.filterOptions" (filterChange)="onFilterChange($event)"
+    [spanText]="config.filterLabel" (filterChange)="onFilterChange($event)">
 </app-filter>
+    <nb-flip-card>
+        <nb-card-front>
+            <nb-card status="primary">
+                <!-- <nb-card-header>Front Card Header</nb-card-header> -->
+                <nb-card-body>
+                    <div [attr.id]="chartElementId" class="chart"></div>
+                </nb-card-body>
+            </nb-card>
+        </nb-card-front>
+        <nb-card-back>
+            <nb-card status="info">
+                <!-- <nb-card-header>Back Card Header</nb-card-header> -->
+                <nb-card-body>
+                    <div [attr.id]="tableElementId" class="table"></div>
+                </nb-card-body>
+            </nb-card>
+        </nb-card-back>
+    </nb-flip-card>
 
-<nb-flip-card>
-    <nb-card-front>
-        <nb-card status="primary">
-            <!-- <nb-card-header>Front Card Header</nb-card-header> -->
-            <nb-card-body>
-                <div [attr.id]="chartElementId" class="chart"></div>
-            </nb-card-body>
-        </nb-card>
-    </nb-card-front>
-    <nb-card-back>
-        <nb-card status="info">
-            <!-- <nb-card-header>Back Card Header</nb-card-header> -->
-            <nb-card-body>
-                <div [attr.id]="tableElementId" class="table"></div>
-            </nb-card-body>
-        </nb-card>
-    </nb-card-back>
-</nb-flip-card>
+<nb-card>
+    <nb-card-footer class="exportbtn">
+        <button nbButton fullWidth status="info" size="small" (click)="exportDataAsJSON()">Export Data as JSON</button>
+        <button nbButton fullWidth status="primary" size="small" (click)="exportDataAsCSV()">Export Data as CSV</button>
+    </nb-card-footer>
+</nb-card>

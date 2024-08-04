@@ -14,7 +14,7 @@ import { CHART_TYPE } from 'src/app/utils';
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.scss'],
 })
-export class ChartComponent implements AfterViewInit {
+export class ChartComponent implements AfterViewInit, OnDestroy {
   @Input() config: ChartConfig = {
     url: '',
     chartID: '',
@@ -115,5 +115,44 @@ export class ChartComponent implements AfterViewInit {
     if (this.tableInstance) {
       this.tableInstance.destroy();
     }
+  }
+
+  async exportDataAsJSON() {
+    try {
+      const data = await this.chartInstance.getData(); // Get chart data
+      const jsonBlob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(jsonBlob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'chart-data.json';
+      link.click();
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      window.alert('Failed to export data');
+    }
+  }
+
+  async exportDataAsCSV() {
+    try {
+      const data = await this.chartInstance.getData(); // Get chart data
+      const csv = this.convertToCSV(data);
+      const csvBlob = new Blob([csv], { type: 'text/csv' });
+      const url = URL.createObjectURL(csvBlob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'chart-data.csv';
+      link.click();
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      window.alert('Failed to export data as CSV');
+    }
+  }
+
+  private convertToCSV(json: any): string {
+    const { documents, fields } = json;
+    const headers = `${fields.label},${fields.value}`;
+    const rows = documents.map((doc:any) => `${doc.label},${doc.value}`).join('\n');
+    const csvContent = `${headers}\n${rows}`;
+    return csvContent;
   }
 }
