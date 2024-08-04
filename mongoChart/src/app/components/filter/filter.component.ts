@@ -7,7 +7,7 @@ import { FilterConfig } from 'src/app/models';
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent implements OnInit {
-  @Input() spanText: string = 'Filter value:';
+  @Input() spanText: string[] = ['Filter'];
   @Input() filterOptions: FilterConfig = {};
   @Output() filterChange = new EventEmitter<{ [key: string]: string[] }>();
 
