@@ -1,0 +1,18 @@
+<nb-layout>
+  <nb-layout-header fixed>
+    <!-- Insert header here -->
+  </nb-layout-header>
+
+  <nb-layout-column>
+    <div class="content-container">
+      <app-chart 
+        *ngFor="let config of chartConfigs"
+        [config]="config">
+      </app-chart>
+    </div>
+  </nb-layout-column>
+
+  <nb-layout-footer fixed>
+    <!-- Insert footer here -->
+  </nb-layout-footer>
+</nb-layout>

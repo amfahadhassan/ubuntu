@@ -1,0 +1,17 @@
+<nb-card-body>
+    <!-- <span class="subtitle">{{ spanText }}</span>
+    <nb-select multiple placeholder="Select Dispute Type" (selectedChange)="onFilterChange($event)">
+        <nb-option *ngFor="let option of options" [value]="option.value">
+            {{ option.label }}
+        </nb-option>
+    </nb-select> -->
+    <ng-container *ngFor="let filterKey of filterOptions | keyvalue">
+        <span class="subtitle">{{ filterKey.key| titlecase }}:</span>
+        <nb-select multiple placeholder="Select {{ filterKey.key| titlecase }}"
+            (selectedChange)="onFilterChange(filterKey.key, $event)">
+            <nb-option *ngFor="let option of filterOptions[filterKey.key]" [value]="option.value">{{ option.label
+                }}</nb-option>
+        </nb-select>
+    </ng-container>
+</nb-card-body>
+

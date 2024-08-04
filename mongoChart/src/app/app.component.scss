@@ -1,0 +1,21 @@
+nb-layout-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // height: 100vh;
+  padding-top: 56px;
+  padding-bottom: 56px;
+  box-sizing: border-box;
+}
+
+.content-container {
+  // max-width: 1200px;
+  width: 100%;
+  padding: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  align-items: center;
+  box-sizing: border-box;
+}
+
